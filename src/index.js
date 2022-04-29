@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './pages/mainPage.js';
 import reportWebVitals from './reportWebVitals';
+import TestAuth from './components/testAuth';
 
 ReactDOM.render(
   <React.StrictMode>
+    <TestAuth />
     <Main />
   </React.StrictMode>,
   document.getElementById('root')
