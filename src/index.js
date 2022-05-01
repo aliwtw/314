@@ -13,9 +13,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Main} />
         <Route path='/login' component={Login} />
         <Route path='/services' component={ServiceMenu} />
+        <Route path='/test' component={TestAuth} />
+        <Route path='/' component={Main} />
       </Switch>
     </BrowserRouter>
   );

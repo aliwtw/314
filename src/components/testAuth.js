@@ -16,6 +16,7 @@ function Auth (){
             // Signed in 
             const user = userCredential.user;
             console.log(user);
+            setError("New user created");
             // ...
         })
         .catch((error) => {
@@ -35,6 +36,7 @@ function Auth (){
             // Signed in 
             const user = userCredential.user;
             console.log(user);
+            setError("User Logged in");
             // ...
         })
         .catch((error) => {
