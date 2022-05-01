@@ -48,7 +48,7 @@ function Auth (){
 
     return(
         <div>
-            <h1 onClick={()=>{newUser('yuin321@gmail.com','123456')}}>Test Sign up</h1>
+            <h1 onClick={()=>{newUser('ali@uow.com','123456')}}>Test Sign up</h1>
             <h1 onClick={()=>{signIn('ali@uow.com','123456')}}>Test Sign in</h1>
             <br/>
             <h1>{errorMessage}</h1>
