@@ -7,7 +7,9 @@ import TestAuth from './components/testAuth';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Banner from './components/header_banner/banner';
 import Login from './pages/loginPage/loginPage';
+import ServiceLogin from './pages/serviceLoginPage/loginPage';
 import ServiceMenu from './pages/servicesMenu/servicesMenu';
+import SignUp from './pages/registerPage/registerPage';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path='/services' component={ServiceMenu} />
         <Route path='/test' component={TestAuth} />
         <Route path='/' component={Main} />
+		<Route path='/sign-up' component={SignUp} />
+		<Route path='/serviceLogin' component={ServiceLogin}/>
       </Switch>
     </BrowserRouter>
   );
