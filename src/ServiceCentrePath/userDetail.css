@@ -1,0 +1,18 @@
+.container
+{
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.margin
+{
+	margin-top:40px;
+}
+
+.textResult
+{
+	float:right;
+	margin-left:3rem;
+}
+
