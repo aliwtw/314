@@ -1,0 +1,25 @@
+
+.service_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+}
+
+.service_page_option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.service_page_button {
+  width: 7rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.service_page_icon {
+  height: 3rem;
+  padding-right: 2rem;
+}
