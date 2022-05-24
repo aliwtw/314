@@ -4,13 +4,11 @@ import { useState } from "react";
 
  function serviceHome()
  {
-	 
+	
+	const [user,setUser] = useState({});
 	const logout = async () => {
 		await signOut(auth);
 	};
-	
-	const [user,setUser] = useState({});
-	
 	 
 	return(
 		<div>

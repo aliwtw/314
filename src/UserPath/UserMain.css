@@ -1,0 +1,42 @@
+.userpage-title {
+  padding-left: 1rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.logo {
+  width: 3rem;
+  padding-left: 1rem;
+}
+
+.nav-links {
+  padding-left: 1rem;
+}
+
+.userpage-main {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userpage-avatar {
+  object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.userpage-avatar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userpage-info {
+  margin-top: 2rem;
+}
