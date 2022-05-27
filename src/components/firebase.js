@@ -1,3 +1,7 @@
+import { initializeApp } from "firebase/app";
+import {getAuth} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyD24p39qimHeZllTAo4u3rt5Uh0yDlAf4E",
     authDomain: "roadsideassistantservice.firebaseapp.com",
@@ -8,4 +12,7 @@ const firebaseConfig = {
     measurementId: "G-SSY3QVV6WQ"
   };
   
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export default app;
