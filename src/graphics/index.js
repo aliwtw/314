@@ -5,7 +5,8 @@ const IMAGES = {
   tickIcon: require('./tickImage.png'),
   wrench: require('./wrench_icon.png'),
   gibbs: require('./gibbs.png'),
-  gongYoo: require('./gong_yoo.png')
+  gongYoo: require('./gong_yoo.png'),
+  logo: require('./RSAS.png')
 }
 
 export default IMAGES;
