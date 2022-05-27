@@ -16,15 +16,13 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault()   
     const form = event.target.elements 
-    //console.log(form[0].value ) //email
-    //console.log(form[1].value ) //password
-    //console.log(form[2].value ) //confrim password
+    console.log(form)
 
-    if (form[1].value===form[2].value){
+    if (form[8].value===form[9].value){
       setLoading(true)
-      newUser(form[0].value,form[1].value)
+      newUser(form[7].value,form[8].value)
     }else{
-      setError("Passwords donot match")
+      setError("Passwords do not match")
     }
   }
 
@@ -56,12 +54,50 @@ const SignUp = () => {
 
   return (
     <div className="container">
-      <Banner style={{marginBottom: '3rem'}} title="Roadside Assistance"/>
+      <Banner style={{margin: "auto", marginBottom: '3rem'}} title="Roadside Assistance"/>
       {error !== "" && <div className="error">{error}</div>}
-      <Card>
+      <Card style={{ margin: '0' }}>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} style={{ width: '18rem' }}>
+            <Form.Group id="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" required />
+            </Form.Group>
+            <Form.Group id="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" required />
+            </Form.Group>
+            <Form.Group id="phone">
+              <Form.Label>Phone</Form.Label>
+              <Form.Control type="tel" required />
+            </Form.Group>
+            <Form.Group id="street">
+              <Form.Label>Street</Form.Label>
+              <Form.Control type="text" required />
+            </Form.Group>
+            <Form.Group id="unit">
+              <Form.Label>Unit</Form.Label>
+              <Form.Control type="unit" placeholder="Apartment/studio/floor"/>
+            </Form.Group>
+            <Form.Group id="state">
+              <Form.Label>State</Form.Label>
+              <Form.Select defaultValue="" required>
+                <option value="">--Select State--</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="SA">SA</option>
+                <option value="VIC">VIC</option>
+                <option value="TAS">TAS</option>
+                <option value="ACT">ACT</option>
+                <option value="NT">NT</option>
+                <option value="WA">WA</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group id="suburb">
+              <Form.Label>Suburb</Form.Label>
+              <Form.Control type="text" required />
+            </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" required />

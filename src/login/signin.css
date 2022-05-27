@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 75vh;
 }
 
 .error {
@@ -13,4 +12,5 @@
   margin-bottom: 20px;
   color: antiquewhite;
 }
+
 

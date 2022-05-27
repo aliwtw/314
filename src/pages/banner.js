@@ -15,11 +15,11 @@ const Banner = (props) => {
   return (
 
     <div className="index">
-      <img style={imgStyle} src={IMAGES.wrench} alt="logo"/>
+      <img style={imgStyle} src={IMAGES.logo} alt="logo"/>
       <span className='title'>
         {title}
       </span>
-      <img style={imgStyle} src={IMAGES.wrench} alt="logo"/>
+      <img style={imgStyle} src={IMAGES.logo} alt="logo"/>
     </div>
     
   );
