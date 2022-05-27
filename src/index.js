@@ -15,12 +15,13 @@ import ServiceUser from './ServiceCentrePath/userList';
 import CentreServices from './ServiceCentrePath/userDetail';
 import CentreAccept from './ServiceCentrePath/notify';
 import CentreNotify from './ServiceCentrePath/notifiedPage';
+import Test from './components/testAuth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/*" element={<App />} />
       <Route path="signin" element={<SignIn />} />
 	  <Route path="serviceLogin" element={<ServiceSignIn />} />
       <Route path="signup" element={<SignUp />} />
@@ -32,6 +33,7 @@ root.render(
 	  <Route path="service/userList/services" element={<CentreServices/>}/>
 	  <Route path="service/servicesAccept" element={<CentreAccept/>}/>
 	  <Route path="service/servicesAccept/servicesNotify" element={<CentreNotify/>}/>
+    <Route path="test" element={<Test />}/>
     </Routes>
   </BrowserRouter>
 );

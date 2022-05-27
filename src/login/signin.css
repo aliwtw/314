@@ -6,3 +6,11 @@
   height: 75vh;
 }
 
+.error {
+  background-color: crimson;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  color: antiquewhite;
+}
+
