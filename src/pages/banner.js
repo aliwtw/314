@@ -7,7 +7,7 @@ const Banner = (props) => {
   const { title } = props;
 
   const imgStyle = {
-    width: '3rem',
+    width: '4rem',
     paddingLeft: '0.5rem',
     paddingRight: '0.5rem'
   }

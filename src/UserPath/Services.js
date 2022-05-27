@@ -45,12 +45,6 @@ const Services = () => {
         <span>$80</span>
       </div>
 
-      <Link to='/user/services/more-options' style={{marginTop: '3rem'}}>
-        <span>
-          More Options
-        </span>
-      </Link>
-
       <Link to='/user' style={{marginTop: '1rem'}}>
         <span>
           Go Back
