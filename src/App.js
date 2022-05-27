@@ -4,8 +4,8 @@ import Banner from './pages/banner';
 import { Link } from "react-router-dom";
 
 function App() {
-  
-  
+
+
   return (
     <div className="main_page">
       <Banner title="Roadside Assistance"/>
@@ -17,7 +17,9 @@ function App() {
       </div>
       <div className='main_page_option'>
           <img className='main_page_icon' src={IMAGES.mechanicIcon} alt='mechanic_icon'/>
+		 <Link to="/serviceLogin">
           <button className="main_page_button">Registered Professional</button>
+		  </Link>
       </div>
       <div className='main_page_option'>
           <img className='main_page_icon' src={IMAGES.onDemandIcon} alt='on_demand_icon'/>
