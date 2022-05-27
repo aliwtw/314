@@ -1,8 +1,9 @@
 import {auth, db} from './firebase';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import { useState } from 'react';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, set, setDoc,doc } from "firebase/firestore"; 
 
+let user;
 
 function Auth (){
     const [errorMessage, setError] = useState('');
@@ -31,7 +32,7 @@ function Auth (){
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in 
-            const user = userCredential.user;
+            user = userCredential.user;
             console.log(user);
             setError("User Logged in");
             // ...
@@ -44,18 +45,17 @@ function Auth (){
         });
     }
     
-    async function dbase(){
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-              first: "Ali",
-              last: "WTW",
-              born: 2002
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-        console.log(db);
+    async function dbase(){doc(db, 'cities', 'BJ');
+    await setDoc(doc(db, "users", user.uid), {
+        fname: "Ali",
+        lName: "Wtw",
+        street: "Bank street",
+        unit: "1",
+        state: "NSW",
+        suburb: "Wollongong",
+        email: "ali@uow.edu.au"
+      });
+      console.log("DB done")
 
     }
 
