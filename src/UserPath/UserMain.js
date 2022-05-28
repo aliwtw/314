@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"
 import './UserMain.css';
 import IMAGES from "../graphics";
 import { Card, Nav, Navbar } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import {db} from '../components/firebase'
 
 const UserMain = () => {
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(async ()=>{
+    const docRef = doc(db, "users", localStorage.getItem("uid"));
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setUserData(docSnap.data());
+      console.log("Document data:", docSnap.data());
+    } else {
+      console.log("No such document!");
+      return( <>Error 404 - Sorry somthing went wrong</>)
+    }
+  },[])
 
   if(localStorage.getItem("uid") === null){
     window.location.href = "/signin"
     return( <>Sorry you are not signed In</>)
+  } else if (userData === null)
+  {
+    return( <>Loading user data ...</>)
   }
-
-
 
   return (
     <>
@@ -43,7 +61,7 @@ const UserMain = () => {
           <div className="userpage-avatar-container">
              <img src={IMAGES.gongYoo} alt="avatar" className="userpage-avatar"/>
              <br />
-             <h3 style={{color: "white"}} >User's Name</h3>
+             <h3 style={{color: "white"}} >{userData.fName + " " + userData.lName}</h3>
            </div>
         </Card.Body>
        </Card>
@@ -51,10 +69,11 @@ const UserMain = () => {
          <Card.Body>
           <div className="userpage-detail-container">
             <h3>About you</h3>
-            <p>Email: </p>
-            <p>Contact: </p>
-            <p>Address: </p>
-            <p>Membership status: </p>
+            <p>Email: {userData.email}</p>
+            <p>Contact: {userData.phone}</p>
+            <p>Address: {userData.street+", "+userData.street+", "+userData.state}</p>
+            <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
+            
             <br />
             <h3>Vehicles</h3>
             <p>Car 1</p>

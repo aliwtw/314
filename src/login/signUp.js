@@ -60,7 +60,7 @@ const SignUp = () => {
 
     async function setData(user, form){
       await setDoc(doc(db, "users", user.uid), {
-          fname: form[0].value,
+          fName: form[0].value,
           lName: form[1].value,
           phone: form[2].value,
           street: form[3].value,
