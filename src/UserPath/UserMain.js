@@ -68,7 +68,7 @@ const UserMain = () => {
 
           <Navbar.Brand>
             <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
-              <img className="logo" src={IMAGES.wrench} alt="logo"/>
+              <img className="logo" src={IMAGES.logo} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
             </div>
           </Navbar.Brand>
@@ -103,12 +103,10 @@ const UserMain = () => {
             <p>Email: {userData.email}</p>
             <p>Contact: {userData.phone}</p>
             <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
-            <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
             
-            {/*<br />
-            <h3>Vehicles</h3>
-            <p>Car 1</p>
-            <p>Car 2</p>*/}
+            <br />
+            <h3>Membership status:</h3>
+            <p>{userData.member ? "Active" : "Expired"}</p>
           </div>
         </Card.Body>
       </Card>
