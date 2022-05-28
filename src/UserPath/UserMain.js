@@ -79,10 +79,10 @@ const UserMain = () => {
             <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
             <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
             
-            <br />
+            {/*<br />
             <h3>Vehicles</h3>
             <p>Car 1</p>
-            <p>Car 2</p>
+            <p>Car 2</p>*/}
           </div>
         </Card.Body>
       </Card>
@@ -90,5 +90,4 @@ const UserMain = () => {
   );
 
 }
-
 export default UserMain;
