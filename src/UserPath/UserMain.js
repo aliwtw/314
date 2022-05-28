@@ -8,7 +8,31 @@ import {db} from '../components/firebase'
 
 const UserMain = () => {
 
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+
   const [userData, setUserData] = useState(null);
+
+  function getLocation(){
+    function success(pos) {
+      var crd = pos.coords;
+    
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+    
+    function error(err) {
+      console.log(`ERROR(${err.code}): ${err.message}`);
+    }
+    
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 
   useEffect(async ()=>{
     const docRef = doc(db, "users", localStorage.getItem("uid"));
@@ -18,10 +42,16 @@ const UserMain = () => {
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
-      console.log("No such document!");
-      return( <>Error 404 - Sorry somthing went wrong</>)
+      console.log("Error 404 - Sorry somthing went wrong");
     }
+
+    getLocation();
   },[])
+
+  function signout(){
+    localStorage.clear()
+    window.location.href = "/signin"
+  }
 
   if(localStorage.getItem("uid") === null){
     window.location.href = "/signin"
@@ -37,10 +67,10 @@ const UserMain = () => {
         sticky="top" expand="sm" collapseOnSelect>
 
           <Navbar.Brand>
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <img className="logo" src={IMAGES.logo} alt="logo"/>
+            <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <img className="logo" src={IMAGES.wrench} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
-            </Link>
+            </div>
           </Navbar.Brand>
 
           <Navbar.Toggle className="coloring" />
@@ -51,6 +81,7 @@ const UserMain = () => {
               <Nav.Link href="#location">Location</Nav.Link>
               <Nav.Link href="#available-person">Available Person</Nav.Link>
               <Nav.Link href="#payments">Payments</Nav.Link>
+              <Nav.Link onClick={()=>signout()}>Signout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
@@ -72,10 +103,12 @@ const UserMain = () => {
             <p>Email: {userData.email}</p>
             <p>Contact: {userData.phone}</p>
             <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
+            <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
             
-            <br />
-            <h3>Membership Status</h3>
-            <p>{userData.member ? "Active" : "Expired"}</p>
+            {/*<br />
+            <h3>Vehicles</h3>
+            <p>Car 1</p>
+            <p>Car 2</p>*/}
           </div>
         </Card.Body>
       </Card>
@@ -83,5 +116,4 @@ const UserMain = () => {
   );
 
 }
-
 export default UserMain;
