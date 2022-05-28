@@ -14,7 +14,7 @@ const SignIn = () => {
   const [error, setError] = useState("")
 
   if (localStorage.getItem("uid") !== null){
-    window.location.href = "/user" 
+    window.location.href = "/service" 
     return <></>
   }
 
@@ -35,7 +35,7 @@ const SignIn = () => {
         console.log(user);
         setError("User Logged in");
         localStorage.setItem("uid", user.uid)
-        window.location.href = "/user"
+        window.location.href = "/service"
         // ...
     })
     .catch((error) => {
