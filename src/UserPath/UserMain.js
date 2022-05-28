@@ -14,25 +14,8 @@ const UserMain = () => {
     maximumAge: 0
   };
   
-
   const [userData, setUserData] = useState(null);
   const [coords, setCoords] = useState(null);
-
-  function getLocation(){
-    function success(pos) {
-      var crd = pos.coords;
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
-    
-    function error(err) {
-      console.log(`ERROR(${err.code}): ${err.message}`);
-    }
-    
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  }
 
   useEffect(async ()=>{
     const docRef = doc(db, "users", localStorage.getItem("uid"));
@@ -110,11 +93,8 @@ const UserMain = () => {
             <p>{userData.member ? "Active" : "Expired"}</p>
           </div>
         </Card.Body>
-        <button onClick={()=>window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
+        <button onClick={()=>coords === null? alert("Please turn on Location access and refresh") :window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
       </Card>
-
-      
-
     </>
   );
 
