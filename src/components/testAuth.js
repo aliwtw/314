@@ -44,7 +44,7 @@ function Auth (){
         });
     }
     
-    async function dbase(){doc(db, 'cities', 'BJ');
+    async function dbase(){
     await setDoc(doc(db, "users", user.uid), {
         fname: "Ali",
         lName: "Wtw",

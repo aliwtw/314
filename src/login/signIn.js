@@ -27,6 +27,8 @@ const SignIn = () => {
         const user = userCredential.user;
         console.log(user);
         setError("User Logged in");
+        localStorage.setItem("uid", user.uid)
+        window.location.href = "/user"
         // ...
     })
     .catch((error) => {

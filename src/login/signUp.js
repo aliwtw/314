@@ -4,33 +4,40 @@ import { Form, Button, Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import Banner from "../pages/banner";
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import {auth} from '../components/firebase';
+import {auth, db} from '../components/firebase';
+import {setDoc,doc } from "firebase/firestore"; 
 
 
 
 const SignUp = () => {
 
+  if (localStorage.getItem("uid") !== null){
+    window.location.href = "/user" 
+  }
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
   const handleSubmit = (event) => {
-    event.preventDefault()   
+    event.preventDefault()  
+    setLoading(true) 
     const form = event.target.elements 
     console.log(form)
 
     if (form[8].value===form[9].value){
-      setLoading(true)
-      newUser(form[7].value,form[8].value)
+      newUser(form)
     }else{
       setError("Passwords do not match")
+      setLoading(false)
     }
   }
 
-  async function newUser(email, password){
-      await createUserWithEmailAndPassword(auth, email, password)
+  async function newUser(form){
+      await createUserWithEmailAndPassword(auth, form[7].value, form[8].value)
       .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
+          setData(user, form);
           //console.log(user);
           setError("New user created");
       })
@@ -45,12 +52,28 @@ const SignUp = () => {
         else{
           setError(error.code+"-"+error.message);
         }
-
+        setLoading(false)
         //console.log(error.code);
         //console.log(error.message);
       });
-      setLoading(false)
     }
+
+    async function setData(user, form){
+      await setDoc(doc(db, "users", user.uid), {
+          fname: form[0].value,
+          lName: form[1].value,
+          phone: form[2].value,
+          street: form[3].value,
+          unit: form[4].value,
+          state: form[5].value,
+          suburb: form[6].value,
+          email: form[7].value,
+          member: form[10].value
+        });
+        console.log("DB done")
+        localStorage.setItem("uid", user.uid)
+        window.location.href = "/user" 
+      }
 
   return (
     <div className="container">
@@ -59,7 +82,7 @@ const SignUp = () => {
       <Card style={{ margin: '0' }}>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>
-          <Form onSubmit={handleSubmit} style={{ width: '18rem' }}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group id="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control type="text" required />
@@ -110,6 +133,10 @@ const SignUp = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" required />
             </Form.Group>
+            <Form.Group id="member">
+              <Form.Label>Get membership</Form.Label>
+              <Form.Check type="switch"/>
+            </Form.Group>
             <Button disabled={loading} className="w-100 mt-3" type="submit">
               Sign Up
             </Button>
@@ -119,7 +146,7 @@ const SignUp = () => {
       <div className="w-100 text-center mt-4">
         Already have an account? <Link to="/signin">Sign In</Link>
       </div>
-
+      <button onClick={()=>window.location.href = "/user"}> NExt user</button>
     </div>
   );
 }

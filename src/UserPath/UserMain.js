@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 
 const UserMain = () => {
 
+  if(localStorage.getItem("uid") === null){
+    window.location.href = "/signin"
+    return( <>Sorry you are not signed In</>)
+  }
+
 
 
   return (
