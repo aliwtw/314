@@ -52,7 +52,8 @@ function Auth (){
         unit: "1",
         state: "NSW",
         suburb: "Wollongong",
-        email: "ali@uow.edu.au"
+        email: "ali@uow.edu.au",
+        image: document
       });
       console.log("DB done")
 
@@ -64,6 +65,7 @@ function Auth (){
             <button onClick={()=>{newUser('ali@uow.com','123456')}}>Test Sign up</button>
             <button onClick={()=>{signIn('ali@uow.com','123456')}}>Test Sign in</button>
             <button onClick={()=>{dbase()}}>Test DB</button>
+            <input type="file" accept="image/png, image/jpeg"></input>
             <br/>
             <h1>{errorMessage}</h1>
         </div>

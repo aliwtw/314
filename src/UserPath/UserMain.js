@@ -16,11 +16,11 @@ const UserMain = () => {
   
 
   const [userData, setUserData] = useState(null);
+  const [coords, setCoords] = useState(null);
 
   function getLocation(){
     function success(pos) {
       var crd = pos.coords;
-    
       console.log('Your current position is:');
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
@@ -31,7 +31,7 @@ const UserMain = () => {
       console.log(`ERROR(${err.code}): ${err.message}`);
     }
     
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error, options);
   }
 
   useEffect(async ()=>{
@@ -39,13 +39,14 @@ const UserMain = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+      await navigator.geolocation.getCurrentPosition((pos)=>{setCoords(pos.coords)}, (err)=>{console.log(`ERROR(${err.code}): ${err.message}`)}, options);
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
       console.log("Error 404 - Sorry somthing went wrong");
     }
 
-    getLocation();
+    //getLocation();
   },[])
 
   function signout(){
@@ -109,7 +110,11 @@ const UserMain = () => {
             <p>{userData.member ? "Active" : "Expired"}</p>
           </div>
         </Card.Body>
+        <button onClick={()=>window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
       </Card>
+
+      
+
     </>
   );
 
