@@ -25,10 +25,6 @@ function App() {
           <img className='main_page_icon' src={IMAGES.onDemandIcon} alt='on_demand_icon'/>
           <button className="main_page_button">On-Demand Service</button>
       </div> 
-
-      <span style={{marginTop: '3rem'}}>
-        More Options
-      </span>
     </div>
   );
 }

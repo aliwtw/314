@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './UserMain.css';
 import IMAGES from "../graphics";
-import { Nav, Navbar } from 'react-bootstrap';
+import { Card, Nav, Navbar } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 const UserMain = () => {
@@ -36,21 +36,32 @@ const UserMain = () => {
             </Nav>
           </Navbar.Collapse>
       </Navbar>
-
-      <div className="userpage-main">
-        <div className="userpage-avatar-container">
-          <img src={IMAGES.gongYoo} alt="avatar" className="userpage-avatar"/>
-          <br />
-          <h3>User Name</h3>
-        </div>
-        
-        <div className="userpage-info">
-          <p>Credit: $100</p>
-          <p>More Info: $100</p>
-          <p>More Info: $100</p>
-          <p>More Info: $100</p>
-        </div>
-      </div>
+      
+      <br/>
+      <Card style={{backgroundColor: "#008f8a"}}>
+        <Card.Body>
+          <div className="userpage-avatar-container">
+             <img src={IMAGES.gongYoo} alt="avatar" className="userpage-avatar"/>
+             <br />
+             <h3 style={{color: "white"}} >User's Name</h3>
+           </div>
+        </Card.Body>
+       </Card>
+       <Card>
+         <Card.Body>
+          <div className="userpage-detail-container">
+            <h3>About you</h3>
+            <p>Email: </p>
+            <p>Contact: </p>
+            <p>Address: </p>
+            <p>Membership status: </p>
+            <br />
+            <h3>Vehicles</h3>
+            <p>Car 1</p>
+            <p>Car 2</p>
+          </div>
+        </Card.Body>
+      </Card>
     </>
   );
 
