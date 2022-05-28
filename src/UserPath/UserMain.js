@@ -90,7 +90,7 @@ const UserMain = () => {
             
             <br />
             <h3>Membership status:</h3>
-            <p>{userData.member ? "Active" : "Expired"}</p>
+            <p>{userData.member === "Yes" ? "Active" : "Inactive"}</p>
           </div>
         </Card.Body>
         <button onClick={()=>coords === null? alert("Please turn on Location access and refresh") :window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
