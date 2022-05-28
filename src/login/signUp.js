@@ -11,12 +11,13 @@ import {setDoc,doc } from "firebase/firestore";
 
 const SignUp = () => {
 
-  if (localStorage.getItem("uid") !== null){
-    window.location.href = "/user" 
-  }
-
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
+  if (localStorage.getItem("uid") !== null){
+    window.location.href = "/user" 
+    return <></>
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()  
