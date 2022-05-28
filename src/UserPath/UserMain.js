@@ -38,7 +38,7 @@ const UserMain = () => {
 
           <Navbar.Brand>
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <img className="logo" src={IMAGES.wrench} alt="logo"/>
+              <img className="logo" src={IMAGES.logo} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
             </Link>
           </Navbar.Brand>
@@ -71,13 +71,11 @@ const UserMain = () => {
             <h3>About you</h3>
             <p>Email: {userData.email}</p>
             <p>Contact: {userData.phone}</p>
-            <p>Address: {userData.street+", "+userData.street+", "+userData.state}</p>
-            <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
+            <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
             
             <br />
-            <h3>Vehicles</h3>
-            <p>Car 1</p>
-            <p>Car 2</p>
+            <h3>Membership Status</h3>
+            <p>{userData.member ? "Active" : "Expired"}</p>
           </div>
         </Card.Body>
       </Card>
