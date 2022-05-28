@@ -41,7 +41,7 @@ const SignIn = () => {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-4">
-        Need an account? <Link to="/signup">Sign Up</Link>
+        Need an account? <Link to="/serviceSignUp">Sign Up</Link>
       </div>
 
     </div>
