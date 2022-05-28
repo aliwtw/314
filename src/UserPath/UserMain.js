@@ -8,7 +8,31 @@ import {db} from '../components/firebase'
 
 const UserMain = () => {
 
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+
   const [userData, setUserData] = useState(null);
+
+  function getLocation(){
+    function success(pos) {
+      var crd = pos.coords;
+    
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+    
+    function error(err) {
+      console.log(`ERROR(${err.code}): ${err.message}`);
+    }
+    
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 
   useEffect(async ()=>{
     const docRef = doc(db, "users", localStorage.getItem("uid"));
@@ -20,6 +44,8 @@ const UserMain = () => {
     } else {
       console.log("Error 404 - Sorry somthing went wrong");
     }
+
+    getLocation();
   },[])
 
   function signout(){
