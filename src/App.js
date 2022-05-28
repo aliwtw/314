@@ -17,7 +17,7 @@ function App() {
       </div>
       <div className='main_page_option'>
           <img className='main_page_icon' src={IMAGES.mechanicIcon} alt='mechanic_icon'/>
-		 <Link to="/serviceLogin">
+		 <Link to="/serviceSignIn">
           <button className="main_page_button">Registered Professional</button>
 		  </Link>
       </div>

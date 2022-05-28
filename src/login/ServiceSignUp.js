@@ -15,7 +15,7 @@ const SignUp = () => {
   const [error, setError] = useState("")
 
   if (localStorage.getItem("uid") !== null){
-    window.location.href = "/user" 
+    window.location.href = "/service" 
     return <></>
   }
 
@@ -25,7 +25,7 @@ const SignUp = () => {
     const form = event.target.elements 
     console.log(form)
 
-    if (form[8].value===form[9].value){
+    if (form[9].value===form[10].value){
       newUser(form)
     }else{
       setError("Passwords do not match")
@@ -34,7 +34,7 @@ const SignUp = () => {
   }
 
   async function newUser(form){
-      await createUserWithEmailAndPassword(auth, form[7].value, form[8].value)
+      await createUserWithEmailAndPassword(auth, form[8].value, form[9].value)
       .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
@@ -60,20 +60,21 @@ const SignUp = () => {
     }
 
     async function setData(user, form){
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "providers", user.uid), {
           fName: form[0].value,
           lName: form[1].value,
           phone: form[2].value,
-          street: form[3].value,
-          unit: form[4].value,
-          state: form[5].value,
-          suburb: form[6].value,
-          email: form[7].value,
-          member: form[10].value
+          company: form[3].value,
+          street: form[4].value,
+          unit: form[5].value,
+          state: form[6].value,
+          suburb: form[7].value,
+          email: form[8].value,
+          cert: form[11].value
         });
         console.log("DB done")
         localStorage.setItem("uid", user.uid)
-        window.location.href = "/user" 
+        window.location.href = "/service" 
       }
 
   return (
@@ -95,6 +96,10 @@ const SignUp = () => {
             <Form.Group id="phone">
               <Form.Label>Phone</Form.Label>
               <Form.Control type="tel" required />
+            </Form.Group>
+            <Form.Group id="company">
+              <Form.Label>Company name</Form.Label>
+              <Form.Control type="text" required />
             </Form.Group>
             <Form.Group id="street">
               <Form.Label>Street</Form.Label>
@@ -134,9 +139,9 @@ const SignUp = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" required />
             </Form.Group>
-            <Form.Group id="member">
-              <Form.Label>Get membership</Form.Label>
-              <Form.Check type="switch"/>
+            <Form.Group controlId="cert" className="mb-3">
+              <Form.Label>Upload Certificate</Form.Label>
+              <Form.Control type="file" accept="application/pdf, image/jpg, image/png" required />
             </Form.Group>
             <Button disabled={loading} className="w-100 mt-3" type="submit">
               Sign Up
@@ -145,7 +150,7 @@ const SignUp = () => {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-4">
-        Already have an account? <Link to="/signin">Sign In</Link>
+        Already have an account? <Link to="/serviceSignIn">Sign In</Link>
       </div>
     </div>
   );

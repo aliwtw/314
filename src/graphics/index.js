@@ -6,6 +6,7 @@ const IMAGES = {
   wrench: require('./wrench_icon.png'),
   gibbs: require('./gibbs.png'),
   gongYoo: require('./gong_yoo.png'),
+  userProfile: require('./userProfile.png'),
   logo: require('./RSAS.png')
 }
 

@@ -81,7 +81,7 @@ const UserMain = () => {
               <Nav.Link href="#location">Location</Nav.Link>
               <Nav.Link href="#available-person">Available Person</Nav.Link>
               <Nav.Link href="#payments">Payments</Nav.Link>
-              <Nav.Link onClick={()=>signout()}>Signout</Nav.Link>
+              <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
@@ -90,7 +90,7 @@ const UserMain = () => {
       <Card style={{backgroundColor: "#008f8a"}}>
         <Card.Body>
           <div className="userpage-avatar-container">
-             <img src={IMAGES.gongYoo} alt="avatar" className="userpage-avatar"/>
+             <img src={IMAGES.userProfile} alt="avatar" className="userpage-avatar"/>
              <br />
              <h3 style={{color: "white"}} >{userData.fName + " " + userData.lName}</h3>
            </div>
