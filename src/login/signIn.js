@@ -8,8 +8,15 @@ import {signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
 
+  
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
+  if (localStorage.getItem("uid") !== null){
+    window.location.href = "/user" 
+    return <></>
+  }
 
   function handleSubmit(event) {
     event.preventDefault()

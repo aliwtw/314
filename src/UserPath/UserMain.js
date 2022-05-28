@@ -18,10 +18,14 @@ const UserMain = () => {
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
-      console.log("No such document!");
-      return( <>Error 404 - Sorry somthing went wrong</>)
+      console.log("Error 404 - Sorry somthing went wrong");
     }
   },[])
+
+  function signout(){
+    localStorage.clear()
+    window.location.href = "/signin"
+  }
 
   if(localStorage.getItem("uid") === null){
     window.location.href = "/signin"
@@ -37,10 +41,10 @@ const UserMain = () => {
         sticky="top" expand="sm" collapseOnSelect>
 
           <Navbar.Brand>
-            <Link to="/" style={{ textDecoration: 'none' }}>
+            <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
               <img className="logo" src={IMAGES.wrench} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
-            </Link>
+            </div>
           </Navbar.Brand>
 
           <Navbar.Toggle className="coloring" />
@@ -51,6 +55,7 @@ const UserMain = () => {
               <Nav.Link href="#location">Location</Nav.Link>
               <Nav.Link href="#available-person">Available Person</Nav.Link>
               <Nav.Link href="#payments">Payments</Nav.Link>
+              <Nav.Link onClick={()=>signout()}>Signout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
@@ -71,7 +76,7 @@ const UserMain = () => {
             <h3>About you</h3>
             <p>Email: {userData.email}</p>
             <p>Contact: {userData.phone}</p>
-            <p>Address: {userData.street+", "+userData.street+", "+userData.state}</p>
+            <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
             <p>Membership status: {userData.member ? "Active" : "Expired"}</p>
             
             <br />
