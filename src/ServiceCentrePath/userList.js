@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import './ServiceMain.css';
 import { Card, Navbar, Nav, Button} from "react-bootstrap";
 import IMAGES from "../graphics";
-import { collection,getDocs, query} from "firebase/firestore"; 
+import { collection,getDocs, query, updateDoc, doc} from "firebase/firestore"; 
 import {db} from '../components/firebase';
 
 const AvailableRequests = () => {
@@ -15,9 +15,9 @@ const AvailableRequests = () => {
     const search = query(collection(db, "requests"));
     const newData = await getDocs(search);
     
-    await newData.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        dataArray = [...dataArray,doc.data()];
+    await newData.forEach((docu) => {
+        console.log(docu.id, " => ", docu.data());
+        dataArray = [...dataArray,docu];
     });
 
     setData(dataArray);
@@ -58,7 +58,8 @@ const AvailableRequests = () => {
     </Navbar>
     <br />
     <div className="avai-container">
-      {data.map(request => {
+      {data.map(docu => {
+		const request = docu.data()
         if(!request.accepted)
         return(
           <>
@@ -70,6 +71,7 @@ const AvailableRequests = () => {
             phone={request.phone}
 			lat={request.lat}
 			lon= {request.lon}
+			docId = {docu.id}
             />
             <br /> 
           </>
@@ -83,7 +85,7 @@ const AvailableRequests = () => {
 
 const Request = (props) => {
 
-  const { name, service, vehicle, description, phone, lat, lon } = props;
+  const { name, service, vehicle, description, phone, lat, lon, docId } = props;
 
   function getLocation(lat,lon)
   {
@@ -104,6 +106,13 @@ const Request = (props) => {
 	
   }
 
+  async function accept(value)
+	{
+		await updateDoc(doc(db, "requests", value), {accepted: true});
+		window.location.reload();
+	}
+  
+
   return (
     <Card style={{ width: '18rem', border: `3px solid green`}}>
       <Card.Body>
@@ -117,7 +126,10 @@ const Request = (props) => {
 		  <br/>
 		  Phone no. {phone}
           <br/>
-		  <Button onClick={()=>getLocation(lat,lon)}>Get Directions</Button>
+		  <Button variant="outline-primary" onClick={()=>getLocation(lat,lon)}>Get Directions</Button>
+		  <br/>
+		  <br/>
+		  <Button variant="outline-success" onClick={()=>{getLocation(lat,lon);accept(docId)}}>Accept</Button>
         </Card.Text>
       </Card.Body>
     </Card>
