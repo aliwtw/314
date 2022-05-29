@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import './UserMain.css';
 import IMAGES from "../graphics";
 import { Card, Nav, Navbar } from 'react-bootstrap';
-import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import {db} from '../components/firebase'
 
@@ -26,7 +25,8 @@ const UserMain = () => {
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
-      console.log("Error 404 - Sorry somthing went wrong");
+      //console.log("Error 404 - cannot find the user");
+      window.location.href = "/service"
     }
 
     //getLocation();

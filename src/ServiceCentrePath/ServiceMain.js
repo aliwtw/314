@@ -18,7 +18,8 @@ const ServiceMain = () => {
       setProviderData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
-      console.log("Error 404 - Sorry somthing went wrong");
+      console.log("Error 404 - cannot find the user");
+      //window.location.href = "/user"
     }
   },[])
 

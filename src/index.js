@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignIn from './login/signIn';
-import ServiceSignIn from './login/serviceLogin';
 import ServiceSignUp from './login/ServiceSignUp';
 import SignUp from './login/signUp';
 import ForgotPass from './login/forgotPass';
@@ -17,6 +16,7 @@ import CentreServices from './ServiceCentrePath/userDetail';
 import CentreAccept from './ServiceCentrePath/notify';
 import CentreNotify from './ServiceCentrePath/notifiedPage';
 import Test from './components/testAuth';
+//import ServiceSignIn from './login/serviceLogin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,7 +25,6 @@ root.render(
       <Route path="/*" element={<App />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="serviceSignUp" element={<ServiceSignUp />} />
-	    <Route path="serviceSignIn" element={<ServiceSignIn />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="forgot-pass" element={<ForgotPass />}/>
       <Route path="user" element={<UserMain />} />

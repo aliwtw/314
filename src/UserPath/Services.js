@@ -54,6 +54,10 @@ const RequestService = () => {
                   </div>
                 ))}
               </Form.Group>
+              <Form.Group id="other">
+                <Form.Label>Other: </Form.Label>
+                <Form.Control type="textarea" required />
+              </Form.Group>
               <Form.Group id="description">
                 <Form.Label>Brief Description</Form.Label>
                 <Form.Control type="textarea" required />
@@ -65,9 +69,11 @@ const RequestService = () => {
           </Card.Body>
         </Card>
         <Link to='/user' style={{marginTop: '1rem'}}>
-          <span>
-            Go Back
-          </span>
+          <Button>
+            <span>
+              Go Back
+            </span>
+          </Button>
         </Link>
       </div>
   );
