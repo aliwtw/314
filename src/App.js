@@ -17,7 +17,7 @@ function App() {
       </div>
       <div className='main_page_option'>
           <img className='main_page_icon' src={IMAGES.onDemandIcon} alt='on_demand_icon'/>
-          <Link to="#available-provider">
+          <Link to="user/available-provider">
           <button className="main_page_button">Realtime Providers</button>
 		      </Link>
       </div> 
