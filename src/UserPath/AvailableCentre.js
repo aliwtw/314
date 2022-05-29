@@ -64,6 +64,8 @@ const AvailableCentre = () => {
               name={provider.fName +" "+ provider.lName} 
               available={provider.available}
               phone={provider.phone}
+              company= {provider.company}
+              address={provider.unit +" "+provider.street +" "+provider.suburb +" "+provider.state}
               />
               <br /> 
             </>
@@ -79,6 +81,8 @@ const AvailableCentre = () => {
             name={provider.fName +" "+ provider.lName} 
             available={provider.available}
             phone={provider.phone}
+            company= {provider.company}
+            address={provider.unit +" "+provider.street +" "+provider.suburb +" "+provider.state}
             />
             <br /> 
           </>
@@ -92,7 +96,7 @@ const AvailableCentre = () => {
 
 const Provider = (props) => {
 
-  const { name, available, phone } = props;
+  const { name, available, phone, company, address } = props;
   const borderColor = available ? 'green' : 'red';
 
   return (
@@ -100,9 +104,13 @@ const Provider = (props) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
+          {company}
+          <br/>
         <Badge bg={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
           <br/> 
           phone: {phone}
+          <br/><br/>
+          Address: {address}
         </Card.Text>
       </Card.Body>
     </Card>

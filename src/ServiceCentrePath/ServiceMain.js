@@ -64,8 +64,7 @@ const ServiceMain = () => {
             <Nav className="nav-links">
               <span></span>
               <Nav.Link href="/service/userList">Available Request</Nav.Link>
-              <Nav.Link href="#user-management">In process services</Nav.Link>
-              <Nav.Link href="#payments">Payments</Nav.Link>
+              <Nav.Link href="/user/payments">Payments</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
