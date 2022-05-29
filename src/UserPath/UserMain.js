@@ -58,8 +58,8 @@ const UserMain = () => {
             <Nav className="nav-links">
               <span></span>
               <Nav.Link href="/user/services">Services</Nav.Link>
-              <Nav.Link href="#available-provider">Available Providers</Nav.Link>
-              <Nav.Link href="#payments">Payments</Nav.Link>
+              <Nav.Link href="/user/available-provider">Available Providers</Nav.Link>
+              <Nav.Link href="/user/payments">Payments</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -9,6 +9,8 @@ import ServiceSignUp from './login/ServiceSignUp';
 import SignUp from './login/signUp';
 import ForgotPass from './login/forgotPass';
 import UserMain from './UserPath/UserMain';
+import AvailableCentre from './UserPath/AvailableCentre';
+import UserPayment from './UserPath/UserPayment';
 import Services from './UserPath/Services';
 import ServiceMain from './ServiceCentrePath/ServiceMain';
 import ServiceUser from './ServiceCentrePath/userList';
@@ -29,6 +31,8 @@ root.render(
       <Route path="forgot-pass" element={<ForgotPass />}/>
       <Route path="user" element={<UserMain />} />
       <Route path="user/services" element={<Services />}/>
+      <Route path="user/available-provider" element={<AvailableCentre />}/>
+      <Route path="user/payments" element={<UserPayment />}/>
       <Route path="service" element={<ServiceMain/>}/>
       <Route path="service/userList" element={<ServiceUser/>}/>
       <Route path="service/userList/services" element={<CentreServices/>}/>
