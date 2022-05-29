@@ -70,7 +70,7 @@ const SignUp = () => {
           state: form[6].value,
           suburb: form[7].value,
           email: form[8].value,
-          cert: form[11].value
+          available: true
         });
         console.log("DB done")
         localStorage.setItem("uid", user.uid)
@@ -139,10 +139,6 @@ const SignUp = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" required />
             </Form.Group>
-            <Form.Group controlId="cert" className="mb-3">
-              <Form.Label>Upload Certificate</Form.Label>
-              <Form.Control type="file" accept="application/pdf, image/jpg, image/png" required />
-            </Form.Group>
             <Button disabled={loading} className="w-100 mt-3" type="submit">
               Sign Up
             </Button>
@@ -150,7 +146,7 @@ const SignUp = () => {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-4">
-        Already have an account? <Link to="/serviceSignIn">Sign In</Link>
+        Already have an account? <Link to="/signin">Sign In</Link>
       </div>
     </div>
   );

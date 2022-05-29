@@ -1,7 +1,7 @@
 import {auth, db} from './firebase';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import { useState } from 'react';
-import { collection, addDoc, set, setDoc,doc } from "firebase/firestore"; 
+import { collection, addDoc, set, setDoc,doc, getDocs, query, where } from "firebase/firestore"; 
 
 let user;
 
@@ -45,17 +45,13 @@ function Auth (){
     }
     
     async function dbase(){
-    await setDoc(doc(db, "users", user.uid), {
-        fname: "Ali",
-        lName: "Wtw",
-        street: "Bank street",
-        unit: "1",
-        state: "NSW",
-        suburb: "Wollongong",
-        email: "ali@uow.edu.au",
-        image: document
-      });
-      console.log("DB done")
+        const q = query(collection(db, "providers"));
+        const x = await getDocs(q);
+        console.log(x);
+        x.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
 
     }
 

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import './ServiceMain.css';
 import IMAGES from "../graphics";
-import { Card, Nav, Navbar } from 'react-bootstrap';
+import { Card, Nav, Navbar, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import {db} from '../components/firebase'
 
 const ServiceMain = () => {
 
   const [providerData, setProviderData] = useState(null);
+  const [Available, setAvailable] = useState(true);
 
   useEffect(async ()=>{
     const docRef = doc(db, "providers", localStorage.getItem("uid"));
@@ -16,6 +17,7 @@ const ServiceMain = () => {
 
     if (docSnap.exists()) {
       setProviderData(docSnap.data());
+      setAvailable(docSnap.data().available)
       console.log("Document data:", docSnap.data());
     } else {
       console.log("Error 404 - cannot find the user");
@@ -26,6 +28,15 @@ const ServiceMain = () => {
   function signout(){
     localStorage.clear()
     window.location.href = "/signin"
+  }
+
+  async function changeAvailable(value)
+  {
+    if (value!==Available){
+    setAvailable("loading");
+    await updateDoc(doc(db, "providers", localStorage.getItem("uid")), {available: value});
+    setAvailable(value);
+    }
   }
 
   if(localStorage.getItem("uid") === null){
@@ -53,9 +64,8 @@ const ServiceMain = () => {
             <Nav className="nav-links">
               <span></span>
               <Nav.Link href="/service/userList">Available Request</Nav.Link>
-              <Nav.Link href="#user-management">User Management</Nav.Link>
-              <Nav.Link href="#service-available">Services Available</Nav.Link>
-              <Nav.Link href="#payments">Payments Management</Nav.Link>
+              <Nav.Link href="#user-management">In process services</Nav.Link>
+              <Nav.Link href="#payments">Payments</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -80,6 +90,31 @@ const ServiceMain = () => {
             <p>Address: {providerData.street+", "+providerData.suburb+", "+providerData.state}</p>
             <br />
           </div>
+          {Available==="loading"?
+            <ToggleButton>Loading...</ToggleButton>
+            :
+            <ButtonGroup>
+              <ToggleButton
+                type="radio"
+                value='Available'
+                checked={Available}
+                variant='outline-success'
+                onClick={()=>changeAvailable(true)}
+              >
+                Available
+              </ToggleButton>
+
+              <ToggleButton
+                type="radio"
+                value='Available'
+                checked={!Available}
+                variant='outline-danger'
+                onClick={()=>changeAvailable(false)}
+              >
+                Not Available
+              </ToggleButton>
+            </ButtonGroup>
+          }
         </Card.Body>
       </Card>
     </>
