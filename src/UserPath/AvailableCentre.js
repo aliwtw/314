@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './AvailableCentre.css';
 import './UserMain.css';
-import { Card, Navbar, Nav} from "react-bootstrap";
+import { Card, Navbar, Nav, Badge} from "react-bootstrap";
 import IMAGES from "../graphics";
 import { collection,getDocs, query} from "firebase/firestore"; 
 import {db} from '../components/firebase';
@@ -16,7 +16,7 @@ const AvailableCentre = () => {
     const newData = await getDocs(search);
     
     await newData.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
         dataArray = [...dataArray,doc.data()];
     });
 
@@ -63,7 +63,7 @@ const AvailableCentre = () => {
               <Provider 
               name={provider.fName +" "+ provider.lName} 
               available={provider.available}
-              rating={"55"}
+              phone={provider.phone}
               />
               <br /> 
             </>
@@ -78,7 +78,7 @@ const AvailableCentre = () => {
             <Provider 
             name={provider.fName +" "+ provider.lName} 
             available={provider.available}
-            rating={"55"}
+            phone={provider.phone}
             />
             <br /> 
           </>
@@ -92,7 +92,7 @@ const AvailableCentre = () => {
 
 const Provider = (props) => {
 
-  const { name, available, rating } = props;
+  const { name, available, phone } = props;
   const borderColor = available ? 'green' : 'red';
 
   return (
@@ -100,9 +100,9 @@ const Provider = (props) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
-          Available: { available ? 'Yes' : 'No'}
+        <Badge bg={available ? 'success' : 'danger'}>{available ? 'Available' : 'Not Available'}</Badge>
           <br/> 
-          Rating: {rating}/5
+          phone: {phone}
         </Card.Text>
       </Card.Body>
     </Card>
