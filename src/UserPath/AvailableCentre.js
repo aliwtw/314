@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './AvailableCentre.css';
 import './UserMain.css';
 import { Card, Navbar, Nav} from "react-bootstrap";
 import IMAGES from "../graphics";
+import { collection,getDocs, query} from "firebase/firestore"; 
+import {db} from '../components/firebase';
 
 const AvailableCentre = () => {
 
-  const mockData = {
-    serviceProviders: [
-      { id: 1, name: 'Zeus', available: true, rating: 4}, 
-      { id: 2, name: 'Oner', available: false, rating: 4}, 
-      { id: 3, name: 'Faker', available: true, rating: 5}, 
-      { id: 4, name: 'Gumayushi', available: false, rating: 3.5}, 
-      { id: 5, name: 'Keria', available: true, rating: 5}
-    ]
-  };
+  const [data,setData] = useState([])
+  let dataArray = []
+
+  useEffect(async()=>{
+    const search = query(collection(db, "providers"));
+    const newData = await getDocs(search);
+    
+    await newData.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        dataArray = [...dataArray,doc.data()];
+    });
+
+    setData(dataArray);
+    console.log(dataArray);
+  },[])
 
   function signout(){
     localStorage.clear()
     window.location.href = "/signin"
+  }
+
+  if(data===[]){
+    return<></>
   }
 
   return(
@@ -44,19 +56,35 @@ const AvailableCentre = () => {
     </Navbar>
     <br />
     <div className="avai-container">
-      {mockData.serviceProviders.map((provider) => {
-          return (
+      {data.map(provider => {
+        if(provider.available)
+          return(
             <>
               <Provider 
-              name={provider.name} 
+              name={provider.fName +" "+ provider.lName} 
               available={provider.available}
-              rating={provider.rating}
+              rating={"55"}
               />
               <br /> 
             </>
-          );
+          )
         })
       }
+
+      {data.map(provider => {
+        if(!provider.available)
+        return(
+          <>
+            <Provider 
+            name={provider.fName +" "+ provider.lName} 
+            available={provider.available}
+            rating={"55"}
+            />
+            <br /> 
+          </>
+        )
+      })
+    }
     </div>
     </>
   );

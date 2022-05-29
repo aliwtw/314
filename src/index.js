@@ -17,7 +17,9 @@ import ServiceUser from './ServiceCentrePath/userList';
 import CentreServices from './ServiceCentrePath/userDetail';
 import CentreAccept from './ServiceCentrePath/notify';
 import CentreNotify from './ServiceCentrePath/notifiedPage';
+import Requests from './ServiceCentrePath/userDetail';
 import Test from './components/testAuth';
+import Available from './UserPath/AvailableCentre';
 //import ServiceSignIn from './login/serviceLogin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,6 +40,8 @@ root.render(
       <Route path="service/userList/services" element={<CentreServices/>}/>
       <Route path="service/servicesAccept" element={<CentreAccept/>}/>
       <Route path="service/servicesAccept/servicesNotify" element={<CentreNotify/>}/>
+      <Route path="service/requests" element={<Requests/>}/>
+      <Route path="available" element={<Available/>}/>
       <Route path="test" element={<Test />}/>
     </Routes>
   </BrowserRouter>
