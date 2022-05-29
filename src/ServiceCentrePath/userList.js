@@ -9,7 +9,7 @@ function UserList ()
 	<>
 	  <Navbar bg="dark" variant="dark">
 		  <Navbar.Brand href="/service">
-			<img src={IMAGES.wrench} alt="companyLogo" className="companyLogo"/>{' '}
+			<img src={IMAGES.logo} alt="companyLogo" className="companyLogo"/>{' '}
 			<span> Manage Customers </span>
 		  </Navbar.Brand>
 	  </Navbar>

@@ -9,7 +9,7 @@ function UserDetail()
 		<div>
 			<Navbar bg="dark" variant="dark">
 			  <Navbar.Brand href="/service">
-				<img src={IMAGES.wrench} alt="companyLogo" className="companyLogo"/>{' '}
+				<img src={IMAGES.logo} alt="companyLogo" className="companyLogo"/>{' '}
 				<span> Roadside Assistance  </span>
 			  </Navbar.Brand>
 		  </Navbar>
