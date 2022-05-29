@@ -28,3 +28,18 @@
   height: 3rem;
   padding-right: 2rem;
 }
+
+.geoError {
+  height: 90vh;
+  width: 90vw;
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 25px;
+  z-index: 10;
+  position: absolute;
+  margin-top: 5vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

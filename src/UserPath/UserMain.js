@@ -14,6 +14,10 @@ const UserMain = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
+      localStorage.setItem("fName", docSnap.data().fName)
+      localStorage.setItem("lName",docSnap.data().lName)
+      localStorage.setItem("email", docSnap.data().email)
+      localStorage.setItem("phone", docSnap.data().phone)
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
