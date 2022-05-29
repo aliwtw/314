@@ -8,6 +8,16 @@ let user;
 function Auth (){
     const [errorMessage, setError] = useState('');
 
+    
+  const [coords, setCoords] = useState(null);
+
+  
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
     function newUser(email, password){
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -55,12 +65,18 @@ function Auth (){
 
     }
 
+    async function loaction()
+    {
+        await navigator.geolocation.getCurrentPosition((pos)=>{setCoords(pos.coords)}, (err)=>{console.log(`ERROR(${err.code}): ${err.message}`)}, options);
+    }
+
 
     return(
         <div>
             <button onClick={()=>{newUser('ali@uow.com','123456')}}>Test Sign up</button>
             <button onClick={()=>{signIn('ali@uow.com','123456')}}>Test Sign in</button>
             <button onClick={()=>{dbase()}}>Test DB</button>
+            <button onClick={()=>coords === null? alert("Please turn on Location access and refresh") :window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
             <input type="file" accept="image/png, image/jpeg"></input>
             <br/>
             <h1>{errorMessage}</h1>

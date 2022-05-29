@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from "react"
 import './UserMain.css';
 import IMAGES from "../graphics";
-import { Card, Nav, Navbar } from 'react-bootstrap';
+import { Card, Nav, Navbar, Badge } from 'react-bootstrap';
 import { doc, getDoc } from "firebase/firestore";
 import {db} from '../components/firebase'
 
 const UserMain = () => {
-
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
   
   const [userData, setUserData] = useState(null);
-  const [coords, setCoords] = useState(null);
 
   useEffect(async ()=>{
     const docRef = doc(db, "users", localStorage.getItem("uid"));
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      await navigator.geolocation.getCurrentPosition((pos)=>{setCoords(pos.coords)}, (err)=>{console.log(`ERROR(${err.code}): ${err.message}`)}, options);
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
@@ -88,11 +80,10 @@ const UserMain = () => {
             <p>Address: {userData.street+", "+userData.suburb+", "+userData.state}</p>
             
             <br />
-            <h3>Membership status:</h3>
-            <p>{userData.member === "Yes" ? "Active" : "Inactive"}</p>
+            <h4 style={{display:"inline"}}>Membership status:&nbsp;&nbsp;</h4>
+            <Badge bg={userData.member === "Yes" ? "success" : "danger"}>{userData.member === "Yes" ? "Active" : "Inactive"}</Badge>
           </div>
         </Card.Body>
-        <button onClick={()=>coords === null? alert("Please turn on Location access and refresh") :window.open(`https://www.google.com/maps/dir/?api=1&origin=${coords.latitude}%2C${coords.longitude}`)}>Get Directions</button>
       </Card>
     </>
   );
