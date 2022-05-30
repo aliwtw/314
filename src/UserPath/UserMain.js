@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import './UserMain.css';
 import IMAGES from "../graphics";
-import { Card, Nav, Navbar, Badge } from 'react-bootstrap';
+import { Card, Nav, Navbar, Badge, Button } from 'react-bootstrap';
 import { doc, getDoc } from "firebase/firestore";
 import {db} from '../components/firebase'
 
@@ -18,6 +18,7 @@ const UserMain = () => {
       localStorage.setItem("lName",docSnap.data().lName)
       localStorage.setItem("email", docSnap.data().email)
       localStorage.setItem("phone", docSnap.data().phone)
+      localStorage.setItem("member", docSnap.data().member)
       setUserData(docSnap.data());
       console.log("Document data:", docSnap.data());
     } else {
@@ -59,7 +60,6 @@ const UserMain = () => {
               <span></span>
               <Nav.Link href="/user/services">Services</Nav.Link>
               <Nav.Link href="/user/available-provider">Available Providers</Nav.Link>
-              <Nav.Link href="/user/payments">Payments</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -85,7 +85,9 @@ const UserMain = () => {
             
             <br />
             <h4 style={{display:"inline"}}>Membership status:&nbsp;&nbsp;</h4>
-            <Badge bg={userData.member === "Yes" ? "success" : "danger"}>{userData.member === "Yes" ? "Active" : "Inactive"}</Badge>
+            <Badge bg={userData.member? "success" : "danger"}>{userData.member? "Active" : "Inactive"}</Badge>
+            <br/><br/>
+            {userData.member?<></>:<Badge style={{cursor:"pointer"}} bg="warning" onClick={()=>window.location.href = "/user/payments"}>Renew Membership</Badge>}
           </div>
         </Card.Body>
       </Card>

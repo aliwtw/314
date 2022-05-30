@@ -69,7 +69,7 @@ const SignUp = () => {
           state: form[5].value,
           suburb: form[6].value,
           email: form[7].value,
-          member: form[10].value
+          member: false
         });
         console.log("DB done")
         localStorage.setItem("uid", user.uid)

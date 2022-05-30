@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './AvailableCentre.css';
 import './UserMain.css';
-import { Card, Navbar, Nav, Form} from "react-bootstrap";
+import { Card, Navbar, Nav, Form, Button} from "react-bootstrap";
 import IMAGES from "../graphics";
 
 const MembershipPayment = () => {
@@ -55,7 +55,7 @@ const MembershipPayment = () => {
                 </Form>
             </Card.Body>
         </Card>
-        <Card style={{ width: '24rem', border: `3px solid ${borderColor}`}}>
+        <Card style={{ width: '24rem', border: `none`}}>
         <Card.Body>
             <Card.Title>Roadside Assistance Membership</Card.Title>
             <Card.Text>

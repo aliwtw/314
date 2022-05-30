@@ -10,7 +10,7 @@ import SignUp from './login/signUp';
 import ForgotPass from './login/forgotPass';
 import UserMain from './UserPath/UserMain';
 import AvailableCentre from './UserPath/AvailableCentre';
-import UserPayment from './UserPath/UserPayment';
+import UserPayment from './UserPath/MembershipPayment';
 import Services from './UserPath/Services';
 import ServiceMain from './ServiceCentrePath/ServiceMain';
 import ServiceUser from './ServiceCentrePath/userList';
@@ -20,6 +20,7 @@ import CentreNotify from './ServiceCentrePath/notifiedPage';
 import Requests from './ServiceCentrePath/userDetail';
 import Test from './components/testAuth';
 import Available from './UserPath/AvailableCentre';
+import Jobs from './ServiceCentrePath/myJobs'
 //import ServiceSignIn from './login/serviceLogin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -42,6 +43,7 @@ root.render(
       <Route path="service/servicesAccept/servicesNotify" element={<CentreNotify/>}/>
       <Route path="service/requests" element={<Requests/>}/>
       <Route path="available" element={<Available/>}/>
+      <Route path="/service/jobs" element={<Jobs />}/>
       <Route path="test" element={<Test />}/>
     </Routes>
   </BrowserRouter>
