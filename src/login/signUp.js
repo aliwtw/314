@@ -134,14 +134,6 @@ const SignUp = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" required />
             </Form.Group>
-            <Form.Group id="member">
-              <Form.Label>Get Membership</Form.Label>
-              <Form.Select defaultValue="" required>
-                <option value="">--Select Option--</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </Form.Select>
-            </Form.Group>
             
             <Button disabled={loading} className="w-100 mt-3" type="submit">
               Sign Up

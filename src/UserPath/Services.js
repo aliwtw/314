@@ -160,7 +160,7 @@ const RequestService = () => {
                 <Form.Control type="textarea" required />
               </Form.Group>
               <br/>
-              {localStorage.getItem('member')!=='true' && <p><Button variant="success">${bill}</Button>*Dolloar 30 service charges are included</p>}
+              {localStorage.getItem('member')!=='true' && <p><Button variant="success">${bill}</Button>*$30 service charges are included</p>}
               <Button disabled={loading} className="w-100 mt-3" type="submit">
                 Submit Request
               </Button>

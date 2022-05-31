@@ -15,12 +15,7 @@ function App() {
               <button className="main_page_button">Sign In</button>
         </Link>
       </div>
-      <div className='main_page_option'>
-          <img className='main_page_icon' src={IMAGES.onDemandIcon} alt='on_demand_icon'/>
-          <Link to="user/available-provider">
-          <button className="main_page_button">Realtime Providers</button>
-		      </Link>
-      </div> 
+       
     </div>
   );
 }
