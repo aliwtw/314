@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router';
 import './AvailableCentre.css';
 import './UserMain.css';
 import { Card, Navbar, Nav, Badge} from "react-bootstrap";
@@ -8,6 +9,7 @@ import {db} from '../components/firebase';
 
 const AvailableCentre = () => {
 
+  const navigate = useNavigate()
   const [data,setData] = useState([])
   let dataArray = []
 
@@ -26,7 +28,7 @@ const AvailableCentre = () => {
 
   function signout(){
     localStorage.clear()
-    window.location.href = "/signin"
+    navigate("/signin")
   }
 
   if(data===[]){
@@ -38,7 +40,7 @@ const AvailableCentre = () => {
     <Navbar bg="dark" variant="dark"
         sticky="top" expand="sm" collapseOnSelect>
         <Navbar.Brand>
-          <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+          <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
             <img className="logo" src={IMAGES.logo} alt="logo"/>
             <span className="userpage-title">Roadside Asisstance</span>
           </div>

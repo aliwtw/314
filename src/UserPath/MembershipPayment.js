@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router';
 import './AvailableCentre.css';
 import './UserMain.css';
 import { Card, Navbar, Nav, Form, Button} from "react-bootstrap";
@@ -6,11 +7,12 @@ import IMAGES from "../graphics";
 
 const MembershipPayment = () => {
 
-    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+    //const [loading, setLoading] = useState(false)
 
     function signout(){
         localStorage.clear()
-        window.location.href = "/signin"
+        navigate("/signin")
     }
 
     return(
@@ -18,7 +20,7 @@ const MembershipPayment = () => {
         <Navbar bg="dark" variant="dark"
             sticky="top" expand="sm" collapseOnSelect>
             <Navbar.Brand>
-            <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+            <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                 <img className="logo" src={IMAGES.logo} alt="logo"/>
                 <span className="userpage-title">Roadside Asisstance</span>
             </div>
@@ -49,7 +51,7 @@ const MembershipPayment = () => {
                     <Form.Group id = "name">
                         <Form.Control type = "text" placeholder="Cardholder Name" required />
                     </Form.Group>
-                    <Button disabled={loading} className="w-100 mt-3" type="submit">
+                    <Button className="w-100 mt-3" type="submit">
                     Submit Payment
                     </Button>
                 </Form>

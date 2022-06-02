@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState} from "react"
+import { useNavigate } from 'react-router';
 import './signin.css';
 import { Form, Button, Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -9,12 +10,12 @@ import {signInWithEmailAndPassword } from "firebase/auth";
 const SignIn = () => {
 
   
-
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
   if (localStorage.getItem("uid") !== null){
-    window.location.href = "/service" 
+    navigate("/service") 
     return <></>
   }
 
@@ -35,7 +36,7 @@ const SignIn = () => {
         console.log(user);
         setError("User Logged in");
         localStorage.setItem("uid", user.uid)
-        window.location.href = "/service"
+        navigate("/service")
         // ...
     })
     .catch((error) => {

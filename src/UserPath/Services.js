@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import './Services.css';
+import { useNavigate } from 'react-router';
 import Banner from "../pages/banner";
 import { Link } from "react-router-dom";
 import { Form, Button, Card } from "react-bootstrap";
@@ -15,6 +16,8 @@ var checkService = {
 
 const RequestService = () => {
   
+  const naviagte = useNavigate()
+
   const [loading, setLoading] = useState(false)
   
   const [coords, setCoords] = useState(null)
@@ -85,7 +88,7 @@ const RequestService = () => {
         accepted: false
       });
       console.log("DB done")
-      window.location.href = "/user" 
+      naviagte("/user") 
     }
 
   const handleSubmit = (event) => {

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useNavigate } from 'react-router';
 import './AvailableCentre.css';
 import './UserMain.css';
 import { Card, Navbar, Nav} from "react-bootstrap";
 import IMAGES from "../graphics";
 
 const UserPayment = () => {
+
+  const navigate = useNavigate()
 
   const mockData = {
     invoice: [
@@ -15,7 +17,7 @@ const UserPayment = () => {
 
   function signout(){
     localStorage.clear()
-    window.location.href = "/signin"
+    navigate("/signin")
   }
 
   return(
@@ -23,7 +25,7 @@ const UserPayment = () => {
     <Navbar bg="dark" variant="dark"
         sticky="top" expand="sm" collapseOnSelect>
         <Navbar.Brand>
-          <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+          <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
             <img className="logo" src={IMAGES.logo} alt="logo"/>
             <span className="userpage-title">Roadside Asisstance</span>
           </div>

@@ -44,7 +44,6 @@ root.render(
       <Route path="service/requests" element={<Requests/>}/>
       <Route path="available" element={<Available/>}/>
       <Route path="/service/jobs" element={<Jobs />}/>
-      <Route path="test" element={<Test />}/>
     </Routes>
   </BrowserRouter>
 );

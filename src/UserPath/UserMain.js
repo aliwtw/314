@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from 'react-router';
 import './UserMain.css';
 import IMAGES from "../graphics";
 import { Card, Nav, Navbar, Badge, Button } from 'react-bootstrap';
@@ -7,6 +8,7 @@ import {db} from '../components/firebase'
 
 const UserMain = () => {
   
+  const navigate = useNavigate()
   const [userData, setUserData] = useState(null);
 
   useEffect(async ()=>{
@@ -23,7 +25,7 @@ const UserMain = () => {
       console.log("Document data:", docSnap.data());
     } else {
       //console.log("Error 404 - cannot find the user");
-      window.location.href = "/service"
+      navigate("/service")
     }
 
     //getLocation();
@@ -31,7 +33,7 @@ const UserMain = () => {
 
   function signout(){
     localStorage.clear()
-    window.location.href = "/signin"
+    navigate("/signin")
   }
 
   if(localStorage.getItem("uid") === null){
@@ -48,7 +50,7 @@ const UserMain = () => {
         sticky="top" expand="sm" collapseOnSelect>
 
           <Navbar.Brand>
-            <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+            <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
               <img className="logo" src={IMAGES.logo} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
             </div>
@@ -87,7 +89,7 @@ const UserMain = () => {
             <h4 style={{display:"inline"}}>Membership status:&nbsp;&nbsp;</h4>
             <Badge bg={userData.member? "success" : "danger"}>{userData.member? "Active" : "Inactive"}</Badge>
             <br/><br/>
-            {userData.member?<></>:<Badge style={{cursor:"pointer"}} bg="warning" onClick={()=>window.location.href = "/user/payments"}>Renew Membership</Badge>}
+            {userData.member?<></>:<Badge style={{cursor:"pointer"}} bg="warning" onClick={()=>navigate("/user/payments")}>Renew Membership</Badge>}
           </div>
         </Card.Body>
       </Card>

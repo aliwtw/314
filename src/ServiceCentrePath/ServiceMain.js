@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router';
 import './ServiceMain.css';
 import IMAGES from "../graphics";
 import { Card, Nav, Navbar, ButtonGroup, ToggleButton } from 'react-bootstrap';
@@ -8,6 +9,7 @@ import {db} from '../components/firebase'
 
 const ServiceMain = () => {
 
+  const navigate = useNavigate()
   const [providerData, setProviderData] = useState(null);
   const [Available, setAvailable] = useState(true);
 
@@ -21,13 +23,12 @@ const ServiceMain = () => {
       console.log("Document data:", docSnap.data());
     } else {
       console.log("Error 404 - cannot find the user");
-      //window.location.href = "/user"
     }
   },[])
 
   function signout(){
     localStorage.clear()
-    window.location.href = "/signin"
+    navigate("/signin")
   }
 
   async function changeAvailable(value)
@@ -40,7 +41,7 @@ const ServiceMain = () => {
   }
 
   if(localStorage.getItem("uid") === null){
-    window.location.href = "/signin"
+    navigate("/signin")
     return( <>Sorry you are not signed In</>)
   } else if (providerData === null)
   {
