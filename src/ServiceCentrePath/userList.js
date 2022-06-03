@@ -53,7 +53,7 @@ const AvailableRequests = () => {
         <Navbar.Toggle className="coloring" />
         <Navbar.Collapse>
           <Nav className="nav-links">
-            <Nav.Link href="/service">Profile</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/service")}>Profile</Nav.Link>
             <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>

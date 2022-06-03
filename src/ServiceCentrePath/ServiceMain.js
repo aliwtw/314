@@ -65,8 +65,8 @@ const ServiceMain = () => {
           <Navbar.Collapse>
             <Nav className="nav-links">
               <span></span>
-              <Nav.Link href="/service/userList">Available Request</Nav.Link>
-              <Nav.Link href="/service/jobs">Jobs</Nav.Link>
+              <Nav.Link onClick={()=>navigate("/service/userList")}>Available Request</Nav.Link>
+              <Nav.Link onClick={()=>navigate("/service/jobs")}>Jobs</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -34,7 +34,7 @@ const UserPayment = () => {
         <Navbar.Toggle className="coloring" />
         <Navbar.Collapse>
           <Nav className="nav-links">
-            <Nav.Link href="/user">Profile</Nav.Link>
+            <Nav.Link  onClick={()=>navigate("/user")}>Profile</Nav.Link>
             <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>

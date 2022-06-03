@@ -8,7 +8,7 @@ function UserDetail()
 	return(
 		<div>
 			<Navbar bg="dark" variant="dark">
-			  <Navbar.Brand href="/service">
+			  <Navbar.Brand>
 				<img src={IMAGES.logo} alt="companyLogo" className="companyLogo"/>{' '}
 				<span> Roadside Assistance  </span>
 			  </Navbar.Brand>

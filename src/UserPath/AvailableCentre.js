@@ -54,9 +54,9 @@ const AvailableCentre = () => {
         <Navbar.Toggle className="coloring" />
         <Navbar.Collapse>
           <Nav className="nav-links">
-            <Nav.Link href="/user/services">Services</Nav.Link>
-            <Nav.Link href="/user/available-provider">Available Providers</Nav.Link>
-            <Nav.Link href="/user/payments">Payments</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/user/payments")}>Payments</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/user/services")}>Services</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/user/available-provider")}>Available Providers</Nav.Link>
             <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>

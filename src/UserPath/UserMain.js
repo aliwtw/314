@@ -41,7 +41,7 @@ const UserMain = () => {
   }
 
   if(localStorage.getItem("uid") === null){
-    window.location.href = "/signin"
+    navigate("/signin")
     return( <>Sorry you are not signed In</>)
   } else if (userData === null)
   {
@@ -64,8 +64,8 @@ const UserMain = () => {
           <Navbar.Collapse>
             <Nav className="nav-links">
               <span></span>
-              <Nav.Link href="/user/services">Services</Nav.Link>
-              <Nav.Link href="/user/available-provider">Available Providers</Nav.Link>
+              <Nav.Link onClick={()=>navigate("/user/services")}>Services</Nav.Link>
+              <Nav.Link onClick={()=>navigate("/user/available-provider")}>Available Providers</Nav.Link>
               <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -44,7 +44,7 @@ const MyJobs = () => {
     <Navbar bg="dark" variant="dark"
         sticky="top" expand="sm" collapseOnSelect>
         <Navbar.Brand>
-          <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+          <div style={{ textDecoration: 'none', cursor: 'default' }}>
             <img className="logo" src={IMAGES.logo} alt="logo"/>
             <span className="userpage-title">Roadside Asisstance</span>
           </div>
@@ -53,8 +53,8 @@ const MyJobs = () => {
         <Navbar.Toggle className="coloring" />
         <Navbar.Collapse>
           <Nav className="nav-links">
-            <Nav.Link href="/service/userList">Available Request</Nav.Link>
-            <Nav.Link href="/service">Profile</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/service/userList")}>Available Request</Nav.Link>
+            <Nav.Link onClick={()=>navigate("/service")}>Profile</Nav.Link>
             <Nav.Link onClick={()=>signout()}>Sign Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
