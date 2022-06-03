@@ -1,4 +1,4 @@
-import React, { useState} from "react"
+import React, { useEffect, useState} from "react"
 import { useNavigate } from 'react-router';
 import './signin.css';
 import { Form, Button, Card } from "react-bootstrap";
@@ -14,8 +14,13 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
+  useEffect(()=>{
+    if (localStorage.getItem("uid") !== null){
+      navigate("/user")
+    }
+  },[])
+
   if (localStorage.getItem("uid") !== null){
-    navigate("/user") 
     return <></>
   }
 

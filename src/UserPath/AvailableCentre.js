@@ -13,17 +13,22 @@ const AvailableCentre = () => {
   const [data,setData] = useState([])
   let dataArray = []
 
-  useEffect(async()=>{
-    const search = query(collection(db, "providers"));
-    const newData = await getDocs(search);
-    
-    await newData.forEach((doc) => {
-        //console.log(doc.id, " => ", doc.data());
-        dataArray = [...dataArray,doc.data()];
-    });
+  useEffect(()=>{
 
-    setData(dataArray);
-    console.log(dataArray);
+    async function fetch(){
+      const search = query(collection(db, "providers"));
+      const newData = await getDocs(search);
+      
+      newData.forEach((doc) => {
+          //console.log(doc.id, " => ", doc.data());
+          dataArray = [...dataArray,doc.data()];
+      });
+
+      setData(dataArray);
+      console.log(dataArray);
+    }
+
+    fetch()
   },[])
 
   function signout(){
@@ -40,7 +45,7 @@ const AvailableCentre = () => {
     <Navbar bg="dark" variant="dark"
         sticky="top" expand="sm" collapseOnSelect>
         <Navbar.Brand>
-          <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+          <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
             <img className="logo" src={IMAGES.logo} alt="logo"/>
             <span className="userpage-title">Roadside Asisstance</span>
           </div>

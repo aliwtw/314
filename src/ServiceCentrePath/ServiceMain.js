@@ -13,17 +13,20 @@ const ServiceMain = () => {
   const [providerData, setProviderData] = useState(null);
   const [Available, setAvailable] = useState(true);
 
-  useEffect(async ()=>{
-    const docRef = doc(db, "providers", localStorage.getItem("uid"));
-    const docSnap = await getDoc(docRef);
+  useEffect(()=>{
+    async function fetch(){  
+      const docRef = doc(db, "providers", localStorage.getItem("uid"));
+      const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      setProviderData(docSnap.data());
-      setAvailable(docSnap.data().available)
-      console.log("Document data:", docSnap.data());
-    } else {
-      console.log("Error 404 - cannot find the user");
+      if (docSnap.exists()) {
+        setProviderData(docSnap.data());
+        setAvailable(docSnap.data().available)
+        console.log("Document data:", docSnap.data());
+      } else {
+        console.log("Error 404 - cannot find the user");
+      }
     }
+    fetch()
   },[])
 
   function signout(){
@@ -54,10 +57,8 @@ const ServiceMain = () => {
         sticky="top" expand="sm" collapseOnSelect>
 
           <Navbar.Brand>
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <img className="logo" src={IMAGES.logo} alt="logo"/>
-              <span className="userpage-title">Roadside Assistance</span>
-            </Link>
+            <img className="logo" src={IMAGES.logo} alt="logo"/>
+            <span className="userpage-title">Roadside Assistance</span>
           </Navbar.Brand>
 
           <Navbar.Toggle className="coloring" />

@@ -20,7 +20,7 @@ const MembershipPayment = () => {
         <Navbar bg="dark" variant="dark"
             sticky="top" expand="sm" collapseOnSelect>
             <Navbar.Brand>
-            <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+            <div onClick={()=> window.location.href = "/"} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                 <img className="logo" src={IMAGES.logo} alt="logo"/>
                 <span className="userpage-title">Roadside Asisstance</span>
             </div>

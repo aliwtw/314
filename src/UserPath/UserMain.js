@@ -11,24 +11,28 @@ const UserMain = () => {
   const navigate = useNavigate()
   const [userData, setUserData] = useState(null);
 
-  useEffect(async ()=>{
-    const docRef = doc(db, "users", localStorage.getItem("uid"));
-    const docSnap = await getDoc(docRef);
+  useEffect(()=>{
+    async function fetch(){
+      const docRef = doc(db, "users", localStorage.getItem("uid"));
+      const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      localStorage.setItem("fName", docSnap.data().fName)
-      localStorage.setItem("lName",docSnap.data().lName)
-      localStorage.setItem("email", docSnap.data().email)
-      localStorage.setItem("phone", docSnap.data().phone)
-      localStorage.setItem("member", docSnap.data().member)
-      setUserData(docSnap.data());
-      console.log("Document data:", docSnap.data());
-    } else {
-      //console.log("Error 404 - cannot find the user");
-      navigate("/service")
+      if (docSnap.exists()) {
+        localStorage.setItem("fName", docSnap.data().fName)
+        localStorage.setItem("lName",docSnap.data().lName)
+        localStorage.setItem("email", docSnap.data().email)
+        localStorage.setItem("phone", docSnap.data().phone)
+        localStorage.setItem("member", docSnap.data().member)
+        setUserData(docSnap.data());
+        console.log("Document data:", docSnap.data());
+      } else {
+        //console.log("Error 404 - cannot find the user");
+        navigate("/service")
+      }
+
+      //getLocation();
     }
 
-    //getLocation();
+    fetch()
   },[])
 
   function signout(){
@@ -50,7 +54,7 @@ const UserMain = () => {
         sticky="top" expand="sm" collapseOnSelect>
 
           <Navbar.Brand>
-            <div onClick={()=> navigate("/")} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+            <div style={{ textDecoration: 'none', cursor: 'default' }}>
               <img className="logo" src={IMAGES.logo} alt="logo"/>
               <span className="userpage-title">Roadside Asisstance</span>
             </div>
@@ -89,7 +93,7 @@ const UserMain = () => {
             <h4 style={{display:"inline"}}>Membership status:&nbsp;&nbsp;</h4>
             <Badge bg={userData.member? "success" : "danger"}>{userData.member? "Active" : "Inactive"}</Badge>
             <br/><br/>
-            {userData.member?<></>:<Badge style={{cursor:"pointer"}} bg="warning" onClick={()=>navigate("/user/payments")}>Renew Membership</Badge>}
+            {userData.member?<></>:<Badge style={{cursor:"pointer"}} bg="warning" onClick={()=>window.location.href = "/"}>Renew Membership</Badge>}
           </div>
         </Card.Body>
       </Card>
